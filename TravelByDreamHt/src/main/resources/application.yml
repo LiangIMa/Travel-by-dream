@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /demo
+    context-path: /travel
 
 #公共配置与profiles选择无关
 mybatis:
