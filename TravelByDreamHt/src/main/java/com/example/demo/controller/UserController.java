@@ -22,7 +22,6 @@ public class UserController {
     @ResponseBody
     public User toIndex(HttpServletRequest request){
         int userId = Integer.parseInt(request.getParameter("id"));
-        System.out.println(userId);
         User user = this.userService.getUserById(userId);
         return user;
     }
