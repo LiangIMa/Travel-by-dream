@@ -23,7 +23,7 @@ public class UserController {
     public User toIndex(HttpServletRequest request){
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = this.userService.getUserById(userId);
-        System.out.println(user.getId());
+        System.out.println(user.getUserId());
         return user;
     }
 }

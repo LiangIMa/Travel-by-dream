@@ -21,7 +21,7 @@ public class TestBootController {
     @RequestMapping("getuser")
     public User getUser() {
         User user = new User();
-        user.setUsername("test");
+        user.setUserName("test");
         return user;
     }
 
