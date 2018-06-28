@@ -13,9 +13,13 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userDao;
 
-
+    // 根据用户id查询
     public User getUserById(int userId) {
         return userDao.selectByPrimaryKey(userId);
+    }
+    // 用户登录验证
+    public User getUserByName(String username) {
+        return userDao.selectByUsername(username);
     }
 
     public boolean addUser(User record){

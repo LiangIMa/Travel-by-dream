@@ -120,6 +120,19 @@
     from user_info
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="String" >
+    <!--
+      WARNING - @mbggenerated
+      根据用户名查询用户
+    -->
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where user_name = #{username,jdbcType=VARCHAR}
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     <!--
       WARNING - @mbggenerated

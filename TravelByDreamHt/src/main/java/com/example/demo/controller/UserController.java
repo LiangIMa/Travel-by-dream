@@ -26,4 +26,14 @@ public class UserController {
         System.out.println(user.getUserId());
         return user;
     }
+    @RequestMapping("/loginByUsername")
+    @ResponseBody
+    public User loginByUsername(HttpServletRequest request){
+        String username = request.getParameter("username");
+        // String password = request.getParameter("password");
+        User user = this.userService.getUserByName(username);
+        System.out.println(user);
+        return user;
+    }
+
 }
