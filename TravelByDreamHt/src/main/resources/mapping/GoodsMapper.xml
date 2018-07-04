@@ -16,6 +16,10 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="goods_position" property="goodsPosition" jdbcType="VARCHAR" />
     <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="user_contact" property="userContact" jdbcType="VARCHAR" />
+    <result column="goods_endate" property="goodsEndate" jdbcType="VARCHAR" />
+    <result column="goods_startdate" property="goodsStartdate" jdbcType="VARCHAR" />
+    <result column="goods_title" property="goodsTitle" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <!--
@@ -92,7 +96,7 @@
       This element was generated on Tue Jun 26 22:58:57 CST 2018.
     -->
     goods_id, goods_name, goods_price, goods_url, goods_desc, goods_state, user_id, goods_position, 
-    goods_num
+    goods_num, user_contact, goods_endate, goods_startdate, goods_title
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.demo.entity.Goods" >
     <!--
