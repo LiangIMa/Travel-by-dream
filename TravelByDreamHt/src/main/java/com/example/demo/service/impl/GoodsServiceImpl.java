@@ -11,7 +11,12 @@ import javax.annotation.Resource;
 public class GoodsServiceImpl implements GoodsService {
     @Resource
     private GoodsMapper goodsDao;
-    public Goods getUserById(int userId) {
+
+    public Goods getUserById(String userId) {
         return goodsDao.selectByPrimaryKey(userId);
+    }
+    // 添加商品
+    public int insertGoods(Goods good) {
+        return goodsDao.insertGoods(good);
     }
 }
