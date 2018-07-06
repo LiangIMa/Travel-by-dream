@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Goods;
 import com.example.demo.service.GoodsService;
+import com.example.demo.utils.QiNiuUtils;
 import com.example.demo.utils.UUIDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,18 @@ public class GoodsController {
         goods.setUserId(Integer.parseInt(request.getParameter("userId")));
         String goodsId = UUIDUtils.getUUID();
         goods.setGoodsId(goodsId);
+        System.out.println(request.getParameter("image1"));
+        System.out.println(request.getParameter("image2"));
         int isSuccess = this.goodsService.insertGoods(goods);
         System.out.println("e9b1318a813a43a9aa363af3c9adabe1");
         return goodsId;
+    }
 
+    @RequestMapping("/getTokn")
+    @ResponseBody
+    public String getTokn(HttpServletRequest request){
+       String token = QiNiuUtils.getUpToken();
+       System.out.println(token);
+        return token;
     }
 }
