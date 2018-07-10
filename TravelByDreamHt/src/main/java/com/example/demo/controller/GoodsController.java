@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Goods;
+import com.example.demo.entity.GoodsImg;
 import com.example.demo.service.GoodsService;
 import com.example.demo.utils.QiNiuUtils;
 import com.example.demo.utils.UUIDUtils;
@@ -10,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/goods")
 public class GoodsController {
@@ -40,12 +45,11 @@ public class GoodsController {
         goods.setGoodsDesc(request.getParameter("desc"));
         goods.setGoodsState(request.getParameter("state"));
         goods.setUserId(Integer.parseInt(request.getParameter("userId")));
+        goods.setGoodsUrl(request.getParameter("goodsUrl"));
         String goodsId = UUIDUtils.getUUID();
         goods.setGoodsId(goodsId);
-        System.out.println(request.getParameter("image1"));
-        System.out.println(request.getParameter("image2"));
         int isSuccess = this.goodsService.insertGoods(goods);
-        System.out.println("e9b1318a813a43a9aa363af3c9adabe1");
+        System.out.println(goodsId);
         return goodsId;
     }
 
@@ -54,6 +58,6 @@ public class GoodsController {
     public String getTokn(HttpServletRequest request){
        String token = QiNiuUtils.getUpToken();
        System.out.println(token);
-        return token;
+       return token;
     }
 }

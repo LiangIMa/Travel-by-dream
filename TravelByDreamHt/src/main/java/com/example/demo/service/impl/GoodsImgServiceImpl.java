@@ -6,11 +6,17 @@ import com.example.demo.service.GoodsImgService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+
 @Service("goodsImgService")
 public class GoodsImgServiceImpl implements GoodsImgService{
     @Resource
-    private GoodsImgMapper goodsDao;
-    public GoodsImg getGoodsImgById(int userId) {
-        return goodsDao.selectByPrimaryKey(userId);
+    private GoodsImgMapper goodsImgDao;
+    public GoodsImg getGoodsImgById(String userId) {
+        return goodsImgDao.selectByPrimaryKey(userId);
+    }
+
+    public int insertImgList(List<GoodsImg> goodsImgList) {
+        return goodsImgDao.insertImgList(goodsImgList);
     }
 }
