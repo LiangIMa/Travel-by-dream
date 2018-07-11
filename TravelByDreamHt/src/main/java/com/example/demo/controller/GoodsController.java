@@ -21,10 +21,10 @@ public class GoodsController {
     @Autowired
     private GoodsService goodsService;
 
-    @RequestMapping("/showGoods")
+    @RequestMapping("/getGoodsById")
     @ResponseBody
     public Goods toIndex(HttpServletRequest request){
-        String goodsId = request.getParameter("id");
+        String goodsId = request.getParameter("goodsId");
         Goods goods = this.goodsService.getUserById(goodsId);
         // System.out.println(user.getId());
         return goods;
@@ -59,5 +59,12 @@ public class GoodsController {
        String token = QiNiuUtils.getUpToken();
        System.out.println(token);
        return token;
+    }
+
+    @RequestMapping("/getGoods")
+    @ResponseBody
+    public List<Goods> getGoods(HttpServletRequest request){
+        List<Goods> goodsList = this.goodsService.selectGoods();
+        return goodsList;
     }
 }

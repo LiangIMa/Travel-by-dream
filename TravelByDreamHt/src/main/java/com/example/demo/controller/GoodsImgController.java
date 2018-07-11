@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/goodsImg")
@@ -29,7 +31,7 @@ public class GoodsImgController {
 
     @RequestMapping("/setImg")
     @ResponseBody
-    public String setImg(HttpServletRequest request){
+    public Map setImg(HttpServletRequest request){
         List<GoodsImg> goodsImgList = new ArrayList<GoodsImg>();
         for(int i = 1; i <= 3; i++){
             GoodsImg goodsImg = new GoodsImg();
@@ -40,6 +42,12 @@ public class GoodsImgController {
             goodsImgList.add(goodsImg);
         }
         int success = this.goodsImgService.insertImgList(goodsImgList);
-        return "1";
+        Map resaultMap = new HashMap();
+        if(success > 0){
+            resaultMap.put("success","true");
+        }else {
+            resaultMap.put("success","false");
+        }
+        return resaultMap;
     }
 }

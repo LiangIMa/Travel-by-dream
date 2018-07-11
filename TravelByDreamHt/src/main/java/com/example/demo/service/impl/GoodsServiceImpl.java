@@ -6,6 +6,7 @@ import com.example.demo.service.GoodsService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("goodsService")
 public class GoodsServiceImpl implements GoodsService {
@@ -18,5 +19,9 @@ public class GoodsServiceImpl implements GoodsService {
     // 添加商品
     public int insertGoods(Goods good) {
         return goodsDao.insertGoods(good);
+    }
+
+    public List<Goods> selectGoods() {
+        return goodsDao.selectGoods();
     }
 }
