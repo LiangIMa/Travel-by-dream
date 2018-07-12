@@ -19,4 +19,8 @@ public class GoodsImgServiceImpl implements GoodsImgService{
     public int insertImgList(List<GoodsImg> goodsImgList) {
         return goodsImgDao.insertImgList(goodsImgList);
     }
+
+    public List<GoodsImg> selectGoodsImgById(String goodsId) {
+        return goodsImgDao.selectGoodsImgById(goodsId);
+    }
 }

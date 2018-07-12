@@ -50,4 +50,12 @@ public class GoodsImgController {
         }
         return resaultMap;
     }
+
+    @RequestMapping("/getGoodsImg")
+    @ResponseBody
+    public List<GoodsImg> getGoods(HttpServletRequest request){
+        String goodsId = request.getParameter("goodsId");
+        List<GoodsImg> goodsList = this.goodsImgService.selectGoodsImgById(goodsId);
+        return goodsList;
+    }
 }

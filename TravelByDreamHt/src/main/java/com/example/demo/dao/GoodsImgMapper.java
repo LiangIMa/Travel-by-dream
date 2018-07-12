@@ -95,4 +95,6 @@ public interface GoodsImgMapper {
     int updateByPrimaryKey(GoodsImg record);
 
     int insertImgList(List<GoodsImg> goodsImgList);
+
+    List<GoodsImg> selectGoodsImgById(String goodsId);
 }
