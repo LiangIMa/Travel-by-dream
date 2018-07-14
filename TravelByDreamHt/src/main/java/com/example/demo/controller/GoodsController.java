@@ -29,7 +29,14 @@ public class GoodsController {
         // System.out.println(user.getId());
         return goods;
     }
-
+    @RequestMapping("/getMySales")
+    @ResponseBody
+    public List<Goods> getMySales(HttpServletRequest request){
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        List<Goods> goodsList = this.goodsService.getGoodByUserId(userId);
+        // System.out.println(user.getId());
+        return goodsList;
+    }
     @RequestMapping("/goodsUpload")
     @ResponseBody
     public String goodsUpload(HttpServletRequest request){

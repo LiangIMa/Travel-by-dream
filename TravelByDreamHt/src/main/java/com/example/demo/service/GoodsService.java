@@ -10,4 +10,6 @@ public interface GoodsService {
     public int insertGoods(Goods good);
     //查询商品
     public List<Goods> selectGoods();
+
+    public List<Goods> getGoodByUserId(Integer userId);
 }

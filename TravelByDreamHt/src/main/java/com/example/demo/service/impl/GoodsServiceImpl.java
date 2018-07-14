@@ -24,4 +24,8 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> selectGoods() {
         return goodsDao.selectGoods();
     }
+
+    public List<Goods> getGoodByUserId(Integer userId) {
+        return goodsDao.getGoodByUserId(userId);
+    }
 }
