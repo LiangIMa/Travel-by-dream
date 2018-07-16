@@ -12,4 +12,12 @@ public interface GoodsService {
     public List<Goods> selectGoods();
 
     public List<Goods> getGoodByUserId(Integer userId);
+
+    public int deleteGoods(String goodId);
+
+    public int updataGoods(Goods good);
+
+    public int handleOnShelf(String goodId);
+
+    public int handleOffShelf(String goodId);
 }

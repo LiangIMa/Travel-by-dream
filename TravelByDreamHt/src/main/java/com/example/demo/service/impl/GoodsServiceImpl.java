@@ -28,4 +28,20 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> getGoodByUserId(Integer userId) {
         return goodsDao.getGoodByUserId(userId);
     }
+
+    public int deleteGoods(String goodId) {
+        return goodsDao.deleteGoods(goodId);
+    }
+
+    public int updataGoods(Goods good) {
+        return goodsDao.updataGoods(good);
+    }
+
+    public int handleOnShelf(String goodId) {
+        return goodsDao.handleOnShelf(goodId);
+    }
+
+    public int handleOffShelf(String goodId) {
+        return goodsDao.handleOffShelf(goodId);
+    }
 }
