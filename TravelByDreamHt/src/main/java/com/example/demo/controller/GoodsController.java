@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/goods")
@@ -34,7 +32,6 @@ public class GoodsController {
     public List<Goods> getMySales(HttpServletRequest request){
         int userId = Integer.parseInt(request.getParameter("userId"));
         List<Goods> goodsList = this.goodsService.getGoodByUserId(userId);
-        // System.out.println(user.getId());
         return goodsList;
     }
     @RequestMapping("/goodsUpload")
@@ -73,5 +70,70 @@ public class GoodsController {
     public List<Goods> getGoods(HttpServletRequest request){
         List<Goods> goodsList = this.goodsService.selectGoods();
         return goodsList;
+    }
+
+    @RequestMapping("/deleteGoods")
+    @ResponseBody
+    public Map deleteGoods(HttpServletRequest request){
+        String goodsId = request.getParameter("goodsId");
+        int isSuccess = this.goodsService.deleteGoods(goodsId);
+        Map resaultMap = new HashMap();
+        if(isSuccess > 0){
+            resaultMap.put("success","true");
+        }else {
+            resaultMap.put("success","false");
+        }
+        return resaultMap;
+    }
+
+    @RequestMapping("/updataGoods")
+    @ResponseBody
+    public Map updataGoods(HttpServletRequest request){
+        Goods goods = new Goods();
+        goods.setGoodsName(request.getParameter("goodsName"));
+        goods.setGoodsEndate(request.getParameter("goodsEndate"));
+        goods.setGoodsPosition(request.getParameter("goodsPosition"));
+        goods.setUserContact(request.getParameter("userContact"));
+        goods.setGoodsNum(Integer.parseInt(request.getParameter("goodsNum")));
+        goods.setGoodsPrice(Double.parseDouble(request.getParameter("goodsPrice")));
+        goods.setGoodsTitle(request.getParameter("goodsTitle"));
+        goods.setGoodsDesc(request.getParameter("goodsDesc"));
+        goods.setGoodsId(request.getParameter("goodsId"));
+        int isSuccess = this.goodsService.updataGoods(goods);
+        Map resaultMap = new HashMap();
+        if(isSuccess > 0){
+            resaultMap.put("success","true");
+        }else {
+            resaultMap.put("success","false");
+        }
+        return resaultMap;
+    }
+
+    @RequestMapping("/handleOnShelf")
+    @ResponseBody
+    public Map handleOnShelf(HttpServletRequest request){
+        String goodsId = request.getParameter("goodsId");
+        int isSuccess = this.goodsService.handleOnShelf(goodsId);
+        Map resaultMap = new HashMap();
+        if(isSuccess > 0){
+            resaultMap.put("success","true");
+        }else {
+            resaultMap.put("success","false");
+        }
+        return resaultMap;
+    }
+
+    @RequestMapping("/handleOffShelf")
+    @ResponseBody
+    public Map handleOffShelf(HttpServletRequest request){
+        String goodsId = request.getParameter("goodsId");
+        int isSuccess = this.goodsService.handleOffShelf(goodsId);
+        Map resaultMap = new HashMap();
+        if(isSuccess > 0){
+            resaultMap.put("success","true");
+        }else {
+            resaultMap.put("success","false");
+        }
+        return resaultMap;
     }
 }
