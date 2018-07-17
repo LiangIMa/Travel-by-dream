@@ -1,10 +1,14 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.entity.Goods;
 import com.example.demo.entity.GoodsImg;
 import com.example.demo.service.GoodsService;
+import com.example.demo.utils.PageUtils;
 import com.example.demo.utils.QiNiuUtils;
 import com.example.demo.utils.UUIDUtils;
+import com.example.demo.utils.WebUtils;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,9 +71,15 @@ public class GoodsController {
 
     @RequestMapping("/getGoods")
     @ResponseBody
-    public List<Goods> getGoods(HttpServletRequest request){
+    public JSONObject getGoods(HttpServletRequest request){
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        int totalNums = this.goodsService.selectGoods().size();
+        PageHelper.startPage(pageNum, pageSize);
         List<Goods> goodsList = this.goodsService.selectGoods();
-        return goodsList;
+        PageUtils<Goods> pageData = new PageUtils<>(pageNum, pageSize, totalNums);
+        pageData.setItems(goodsList);
+        return WebUtils.createSuccResult(goodsList,totalNums);
     }
 
     @RequestMapping("/deleteGoods")
