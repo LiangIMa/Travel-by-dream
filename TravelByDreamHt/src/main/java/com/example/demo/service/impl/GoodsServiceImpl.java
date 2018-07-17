@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import com.example.demo.dao.GoodsMapper;
 import com.example.demo.entity.Goods;
 import com.example.demo.service.GoodsService;
+import com.example.demo.utils.PageUtils;
+import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,7 +24,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     public List<Goods> selectGoods() {
-        return goodsDao.selectGoods();
+        List<Goods> goodsList = goodsDao.selectGoods();
+        return goodsList;
     }
 
     public List<Goods> getGoodByUserId(Integer userId) {
