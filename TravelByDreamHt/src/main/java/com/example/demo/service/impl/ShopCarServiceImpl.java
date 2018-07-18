@@ -16,4 +16,12 @@ public class ShopCarServiceImpl implements ShopCarService{
     public ShopCar getShopCarById(String goodId) {
         return ShopCarDao.getShopCarById(goodId);
     }
+
+    public int insertGoods(ShopCar good) {
+        return ShopCarDao.insertGoods(good);
+    }
+
+    public int updataGoods(ShopCar good) {
+        return ShopCarDao.updataGoods(good);
+    }
 }
