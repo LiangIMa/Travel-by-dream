@@ -157,7 +157,7 @@
     -->
     select
     *
-    from goods_info where goods_state = 1
+    from goods_info where goods_state = 1  and goods_num > 0
   </select>
 
   <select id="getGoodByUserId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
