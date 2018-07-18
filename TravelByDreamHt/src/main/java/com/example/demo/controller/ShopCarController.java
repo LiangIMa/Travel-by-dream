@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/ShopCar")
@@ -70,6 +71,18 @@ public class ShopCarController {
             }else{
                 return WebUtils.createErrorResult();
             }
+        } catch (Exception e) {
+            return WebUtils.createErrorResult(ResponseEnum.FAILURE);
+        }
+    }
+
+    @RequestMapping("/queryCarGoodsByUser")
+    @ResponseBody
+    public JSONObject queryCarGoodsByUser(HttpServletRequest request){
+        try {
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            List<ShopCar> goodsList = this.shopCarService.queryCarGoodsByUser(userId);
+            return WebUtils.createSuccResult(goodsList);
         } catch (Exception e) {
             return WebUtils.createErrorResult(ResponseEnum.FAILURE);
         }

@@ -6,6 +6,7 @@ import com.example.demo.service.ShopCarService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("ShopCarService")
 public class ShopCarServiceImpl implements ShopCarService{
@@ -23,5 +24,10 @@ public class ShopCarServiceImpl implements ShopCarService{
 
     public int updataGoods(ShopCar good) {
         return ShopCarDao.updataGoods(good);
+    }
+
+    public List<ShopCar> queryCarGoodsByUser(int userId) {
+        List<ShopCar> goodsList = ShopCarDao.queryCarGoodsByUser(userId);
+        return goodsList;
     }
 }
