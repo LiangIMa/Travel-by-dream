@@ -70,6 +70,12 @@ public interface ShopCarMapper {
 
     int updataGoods(ShopCar good);
 
+    int handleOnShelf(String good);
+
+    int handleOffShelf(String good);
+
+    int updataGoodsInfo(ShopCar good);
+
     List<ShopCar> queryCarGoodsByUser(int userId);
 
     /**

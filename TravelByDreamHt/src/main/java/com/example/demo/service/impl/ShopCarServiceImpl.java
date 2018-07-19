@@ -30,4 +30,16 @@ public class ShopCarServiceImpl implements ShopCarService{
         List<ShopCar> goodsList = ShopCarDao.queryCarGoodsByUser(userId);
         return goodsList;
     }
+
+    public int updataGoodsInfo(ShopCar good) {
+        return ShopCarDao.updataGoodsInfo(good);
+    }
+
+    public int handleOnShelf(String goodId) {
+        return ShopCarDao.handleOnShelf(goodId);
+    }
+
+    public int handleOffShelf(String goodId) {
+        return ShopCarDao.handleOffShelf(goodId);
+    }
 }

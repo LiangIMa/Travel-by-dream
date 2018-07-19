@@ -14,4 +14,10 @@ public interface ShopCarService {
     public int updataGoods(ShopCar good);
 
     public List<ShopCar> queryCarGoodsByUser(int userId);
+
+    public int updataGoodsInfo(ShopCar good);
+
+    public int handleOnShelf(String goodId);
+
+    public int handleOffShelf(String goodId);
 }

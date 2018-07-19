@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.entity.Goods;
 import com.example.demo.entity.GoodsImg;
+import com.example.demo.entity.ShopCar;
 import com.example.demo.service.GoodsService;
+import com.example.demo.service.ShopCarService;
 import com.example.demo.utils.PageUtils;
 import com.example.demo.utils.QiNiuUtils;
 import com.example.demo.utils.UUIDUtils;
@@ -22,6 +24,8 @@ import java.util.*;
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
+    @Autowired
+    private ShopCarService shopCarService;
 
     @RequestMapping("/getGoodsById")
     @ResponseBody
@@ -109,7 +113,14 @@ public class GoodsController {
         goods.setGoodsTitle(request.getParameter("goodsTitle"));
         goods.setGoodsDesc(request.getParameter("goodsDesc"));
         goods.setGoodsId(request.getParameter("goodsId"));
+//        更新购物车数据
+        ShopCar carGoods = new ShopCar();
+        carGoods.setGoodsId(request.getParameter("goodsId"));
+        carGoods.setGoodsName(request.getParameter("goodsName"));
+        carGoods.setGoodsPrice(Double.parseDouble(request.getParameter("goodsPrice")));
+        carGoods.setGoodsTotal(Integer.parseInt(request.getParameter("goodsNum")));
         int isSuccess = this.goodsService.updataGoods(goods);
+        int updataShopCar = this.shopCarService.updataGoodsInfo(carGoods);
         Map resaultMap = new HashMap();
         if(isSuccess > 0){
             resaultMap.put("success","true");
@@ -124,6 +135,7 @@ public class GoodsController {
     public Map handleOnShelf(HttpServletRequest request){
         String goodsId = request.getParameter("goodsId");
         int isSuccess = this.goodsService.handleOnShelf(goodsId);
+        int updataShopCar = this.shopCarService.handleOnShelf(goodsId);
         Map resaultMap = new HashMap();
         if(isSuccess > 0){
             resaultMap.put("success","true");
@@ -138,6 +150,7 @@ public class GoodsController {
     public Map handleOffShelf(HttpServletRequest request){
         String goodsId = request.getParameter("goodsId");
         int isSuccess = this.goodsService.handleOffShelf(goodsId);
+        int updataShopCar = this.shopCarService.handleOffShelf(goodsId);
         Map resaultMap = new HashMap();
         if(isSuccess > 0){
             resaultMap.put("success","true");
