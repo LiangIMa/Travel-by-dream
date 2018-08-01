@@ -67,6 +67,7 @@ public class ShopCarController {
             goods.setGoodsId(request.getParameter("goodsId"));
             goods.setGoodsNum(Integer.parseInt(request.getParameter("goodsNum")));
             goods.setGoodsTotal(Integer.parseInt(request.getParameter("goodsTotal")));
+            goods.setUserId(Integer.parseInt(request.getParameter("userId")));
             int good = this.shopCarService.updataGoods(goods);
             if(good > 0){
                 return WebUtils.createSuccResult();

@@ -1,7 +1,10 @@
 package com.example.demo.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
+import com.example.demo.utils.ResponseEnum;
+import com.example.demo.utils.WebUtils;
 import com.sun.tools.internal.ws.processor.model.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -32,5 +35,31 @@ public class UserController {
         User user = this.userService.getUserByName(username);
         System.out.println(user);
         return user;
+    }
+
+    @RequestMapping("/register")
+    @ResponseBody
+    public JSONObject register(HttpServletRequest request) {
+        try{
+            String username = request.getParameter("name");
+            User hasUser = this.userService.getUserByName(username);
+            if(hasUser != null){
+                return WebUtils.createErrorResult(ResponseEnum.FAILURE);
+            }
+            User user = new User();
+            user.setUserName(username);
+            user.setUserPhone(request.getParameter("phone"));
+            user.setUserPw(request.getParameter("password"));
+            user.setUserSex(request.getParameter("sex"));
+            user.setUserType(request.getParameter("type"));
+            int insertSuccess = this.userService.addUser(user);
+            if(insertSuccess > 0){
+                return WebUtils.createSuccResult();
+            }else{
+                return WebUtils.createErrorResult();
+            }
+        }catch(Exception e){
+            return WebUtils.createErrorResult(ResponseEnum.FAILURE);
+        }
     }
 }

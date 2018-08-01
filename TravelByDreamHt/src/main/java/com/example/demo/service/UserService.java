@@ -10,5 +10,8 @@ public interface UserService {
     // 用户登录验证
     public User getUserByName(String username);
 
-    boolean addUser(User record);
+    int addUser(User record);
+
+//    public int register(User user);
+
 }
