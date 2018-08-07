@@ -66,6 +66,8 @@ public interface ShopCarMapper {
 
     ShopCar getShopCarById(String goodId,int userId);
 
+    int deleteCarGoods(String goodId,int userId);
+
     int insertGoods(ShopCar good);
 
     int updataGoods(ShopCar good);

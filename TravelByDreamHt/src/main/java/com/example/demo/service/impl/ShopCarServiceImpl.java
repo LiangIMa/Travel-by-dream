@@ -18,6 +18,10 @@ public class ShopCarServiceImpl implements ShopCarService{
         return ShopCarDao.getShopCarById(goodId,userId);
     }
 
+    public int deleteCarGoods(String goodId,int userId) {
+        return ShopCarDao.deleteCarGoods(goodId,userId);
+    }
+
     public int insertGoods(ShopCar good) {
         return ShopCarDao.insertGoods(good);
     }

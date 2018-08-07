@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/ShopCar")
@@ -88,6 +90,21 @@ public class ShopCarController {
             int userId = Integer.parseInt(request.getParameter("userId"));
             List<ShopCar> goodsList = this.shopCarService.queryCarGoodsByUser(userId);
             return WebUtils.createSuccResult(goodsList);
+        } catch (Exception e) {
+            return WebUtils.createErrorResult(ResponseEnum.FAILURE);
+        }
+    }
+
+
+    @RequestMapping("/deleteCarGoods")
+    @ResponseBody
+    public JSONObject deleteCarGoods(HttpServletRequest request){
+        //删除购物车商品
+        try {
+            String goodsId = request.getParameter("goodsId");
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            int good = this.shopCarService.deleteCarGoods(goodsId,userId);
+            return WebUtils.createSuccResult(good);
         } catch (Exception e) {
             return WebUtils.createErrorResult(ResponseEnum.FAILURE);
         }

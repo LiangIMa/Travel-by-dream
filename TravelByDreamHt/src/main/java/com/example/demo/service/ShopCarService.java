@@ -9,6 +9,8 @@ public interface ShopCarService {
 
     public ShopCar getShopCarById(String goodId,int userId);
 
+    public int deleteCarGoods(String goodId,int userId);
+
     public int insertGoods(ShopCar good);
 
     public int updataGoods(ShopCar good);
