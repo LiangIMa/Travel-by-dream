@@ -47,4 +47,8 @@ public class GoodsServiceImpl implements GoodsService {
     public int handleOffShelf(String goodId) {
         return goodsDao.handleOffShelf(goodId);
     }
+
+    public List<Goods> selectGoodsByPosition(String position) {
+        return goodsDao.selectGoodsByPosition(position);
+    }
 }

@@ -20,4 +20,6 @@ public interface GoodsService {
     public int handleOnShelf(String goodId);
 
     public int handleOffShelf(String goodId);
+
+    public List<Goods> selectGoodsByPosition(String position);
 }

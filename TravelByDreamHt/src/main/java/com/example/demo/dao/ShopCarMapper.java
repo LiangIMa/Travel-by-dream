@@ -64,7 +64,7 @@ public interface ShopCarMapper {
      */
     ShopCar selectByPrimaryKey(String carId);
 
-    ShopCar getShopCarById(String goodId);
+    ShopCar getShopCarById(String goodId,int userId);
 
     int insertGoods(ShopCar good);
 

@@ -61,6 +61,8 @@ public interface GoodsMapper {
 
     List<Goods> getGoodByUserId(Integer userId);
 
+    List<Goods> selectGoodsByPosition(String position);
+
     int deleteGoods(String good);
 
     int handleOnShelf(String good);

@@ -25,8 +25,9 @@ public class ShopCarController {
     public JSONObject queryGoods(HttpServletRequest request){
         //按goodsId查找，用戶添购物车时查看购物车是否有重复商品
         try {
-            String goodId = request.getParameter("goodsId");
-            ShopCar good = this.shopCarService.getShopCarById(goodId);
+            String goodsId = request.getParameter("goodsId");
+            int userId = Integer.parseInt(request.getParameter("userId"));
+            ShopCar good = this.shopCarService.getShopCarById(goodsId,userId);
             return WebUtils.createSuccResult(good);
         } catch (Exception e) {
             return WebUtils.createErrorResult(ResponseEnum.FAILURE);

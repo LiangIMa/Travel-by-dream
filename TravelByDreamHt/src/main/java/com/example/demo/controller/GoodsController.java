@@ -159,4 +159,18 @@ public class GoodsController {
         }
         return resaultMap;
     }
+
+    @RequestMapping("/getGoodsByPosition")
+    @ResponseBody
+    public JSONObject getGoodsByPosition(HttpServletRequest request){
+        String positionRadio = request.getParameter("positionRadio");
+        int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+        int pageSize = Integer.parseInt(request.getParameter("pageSize"));
+        int totalNums = this.goodsService.selectGoodsByPosition(positionRadio).size();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Goods> goodsList = this.goodsService.selectGoodsByPosition(positionRadio);
+        PageUtils<Goods> pageData = new PageUtils<>(pageNum, pageSize, totalNums);
+        pageData.setItems(goodsList);
+        return WebUtils.createSuccResult(goodsList,totalNums);
+    }
 }

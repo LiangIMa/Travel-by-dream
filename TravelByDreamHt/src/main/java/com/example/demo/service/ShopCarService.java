@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ShopCarService {
 
-    public ShopCar getShopCarById(String goodId);
+    public ShopCar getShopCarById(String goodId,int userId);
 
     public int insertGoods(ShopCar good);
 

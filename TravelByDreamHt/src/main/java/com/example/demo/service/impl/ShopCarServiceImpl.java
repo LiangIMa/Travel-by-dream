@@ -14,8 +14,8 @@ public class ShopCarServiceImpl implements ShopCarService{
     @Resource
     private ShopCarMapper ShopCarDao;
 
-    public ShopCar getShopCarById(String goodId) {
-        return ShopCarDao.getShopCarById(goodId);
+    public ShopCar getShopCarById(String goodId,int userId) {
+        return ShopCarDao.getShopCarById(goodId,userId);
     }
 
     public int insertGoods(ShopCar good) {
